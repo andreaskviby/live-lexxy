@@ -405,12 +405,23 @@ window.liveLexxyEditor = function (config) {
         },
 
         showError(message) {
-            // Use a more user-friendly notification if available, otherwise fall back to alert
+            // Use a more user-friendly notification if available
             if (window.Livewire && window.Livewire.emit) {
                 window.Livewire.emit('showNotification', { type: 'error', message });
+            } else if (this.$dispatch) {
+                // Alpine.js event dispatch for custom error handling
+                this.$dispatch('editor-error', { message });
             } else {
+                // Fallback: Log to console and show alert
                 console.error(message);
-                alert(message);
+                // Create a simple DOM notification instead of alert for better accessibility
+                const notification = document.createElement('div');
+                notification.textContent = message;
+                notification.className = 'live-lexxy-error-notification';
+                notification.setAttribute('role', 'alert');
+                notification.setAttribute('aria-live', 'assertive');
+                document.body.appendChild(notification);
+                setTimeout(() => notification.remove(), 5000);
             }
         },
 
@@ -418,7 +429,7 @@ window.liveLexxyEditor = function (config) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
                 reader.onload = () => resolve(reader.result);
-                reader.onerror = reject;
+                reader.onerror = () => reject(new Error(`Failed to read file: ${file.name}`));
                 reader.readAsDataURL(file);
             });
         },
