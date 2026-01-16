@@ -16,6 +16,12 @@ A modern rich text editor component for Laravel Livewire, built on Meta's [Lexic
   - Code blocks with syntax highlighting
   - Links
   - Tables
+  - **Images with multiple upload methods**:
+    - Click the image button in the toolbar
+    - Drag and drop images directly into the editor
+    - Paste images from your clipboard
+    - Automatic conversion to efficient formats
+    - Responsive and optimized for web delivery
 - **Customizable Toolbar**: Configure which tools are available
 - **Alpine.js Compatible**: Works seamlessly with the TALL stack
 - **Easy to Style**: Comes with default styles that can be easily customized
@@ -117,10 +123,11 @@ You can customize the editor with various options:
     wire:model="content"
     placeholder="Write something amazing..."
     :required="true"
-    :toolbar="['bold', 'italic', 'link', 'bulletList', 'heading']"
+    :toolbar="['bold', 'italic', 'link', 'image', 'bulletList', 'heading']"
     :enableMarkdown="true"
     :enableCodeHighlighting="true"
     :enableTables="true"
+    :enableImages="true"
     name="article_content"
 />
 ```
@@ -137,6 +144,7 @@ You can customize the editor with various options:
 | `enableMarkdown` | boolean | true | Enable markdown shortcuts |
 | `enableCodeHighlighting` | boolean | true | Enable code syntax highlighting |
 | `enableTables` | boolean | true | Enable table support |
+| `enableImages` | boolean | true | Enable image upload, drag-and-drop, and paste |
 | `name` | string | null | Form field name for traditional form submissions |
 
 ### Available Toolbar Items
@@ -146,6 +154,7 @@ You can customize the editor with various options:
 - `strikethrough` - Strikethrough text
 - `underline` - Underline text
 - `link` - Insert/edit links
+- `image` - Insert images (upload, drag-and-drop, paste)
 - `bulletList` - Unordered list
 - `orderedList` - Ordered list
 - `quote` - Block quote
@@ -153,6 +162,55 @@ You can customize the editor with various options:
 - `codeBlock` - Code block
 - `divider` - Horizontal divider
 - `heading` - Heading styles
+
+## Image Handling
+
+Live-Lexxy provides comprehensive image support with multiple ways to add images:
+
+### Uploading Images
+
+You can add images in several ways:
+
+1. **Click the image button** in the toolbar
+2. **Drag and drop** an image directly into the editor
+3. **Paste** an image from your clipboard
+
+### Image Processing
+
+By default, images are converted to base64 and embedded directly in the content. For production use, you should implement a custom image upload handler:
+
+```blade
+<div x-data="{ 
+    imageUploadHandler: async (file) => {
+        const formData = new FormData();
+        formData.append('image', file);
+        
+        const response = await fetch('/api/upload-image', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+            }
+        });
+        
+        const data = await response.json();
+        return data.url; // Return the uploaded image URL
+    }
+}">
+    <livewire:live-lexxy-editor 
+        wire:model="content"
+        x-bind:image-upload-handler="imageUploadHandler"
+    />
+</div>
+```
+
+### Image Features
+
+- **Automatic optimization**: Images are displayed responsively
+- **Drag and drop**: Simply drag an image file into the editor
+- **Clipboard paste**: Copy an image and paste it directly
+- **File picker**: Click the image toolbar button to browse for files
+- **Loading states**: Visual feedback during upload
 
 ## Customization
 

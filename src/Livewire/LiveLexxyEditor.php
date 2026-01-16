@@ -14,6 +14,7 @@ class LiveLexxyEditor extends Component
         'italic',
         'strikethrough',
         'link',
+        'image',
         'bulletList',
         'orderedList',
         'quote',
@@ -25,6 +26,7 @@ class LiveLexxyEditor extends Component
     public bool $enableMarkdown = true;
     public bool $enableCodeHighlighting = true;
     public bool $enableTables = true;
+    public bool $enableImages = true;
     public ?string $name = null;
 
     protected $listeners = ['liveLexxyContentChanged'];
@@ -37,6 +39,7 @@ class LiveLexxyEditor extends Component
         bool $enableMarkdown = true,
         bool $enableCodeHighlighting = true,
         bool $enableTables = true,
+        bool $enableImages = true,
         ?string $name = null
     ): void {
         $this->content = $content;
@@ -45,6 +48,7 @@ class LiveLexxyEditor extends Component
         $this->enableMarkdown = $enableMarkdown;
         $this->enableCodeHighlighting = $enableCodeHighlighting;
         $this->enableTables = $enableTables;
+        $this->enableImages = $enableImages;
         $this->name = $name;
 
         if ($toolbar !== null) {
