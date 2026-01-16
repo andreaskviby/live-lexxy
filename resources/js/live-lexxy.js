@@ -12,7 +12,6 @@ import {
 import { $generateHtmlFromNodes, $generateNodesFromDOM } from '@lexical/html';
 import { registerRichText } from '@lexical/rich-text';
 import { registerHistory } from '@lexical/history';
-import { registerPlainText } from '@lexical/plain-text';
 import { LinkNode, AutoLinkNode, registerLinkNode } from '@lexical/link';
 import { ListNode, ListItemNode, registerList } from '@lexical/list';
 import { HeadingNode, QuoteNode } from '@lexical/rich-text';
@@ -30,7 +29,6 @@ window.liveLexxyEditor = function (config) {
         enableMarkdown: config.enableMarkdown !== false,
         enableCodeHighlighting: config.enableCodeHighlighting !== false,
         enableTables: config.enableTables !== false,
-        showToolbar: true,
         activeFormats: new Set(),
 
         init() {
@@ -180,7 +178,6 @@ window.liveLexxyEditor = function (config) {
                 case 'redo':
                     this.editor.dispatchCommand(REDO_COMMAND);
                     break;
-                // Additional commands can be added here
             }
         },
 

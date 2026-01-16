@@ -9,9 +9,10 @@
     })"
     x-init="init()"
     class="live-lexxy-wrapper"
+    :class="{ 'required': {{ $required ? 'true' : 'false' }} }"
     wire:ignore
 >
-    <div class="live-lexxy-toolbar" x-show="showToolbar">
+    <div class="live-lexxy-toolbar">
         <template x-for="item in toolbar" :key="item">
             <button 
                 type="button"
@@ -26,7 +27,6 @@
     <div 
         x-ref="editorContainer"
         class="live-lexxy-editor"
-        :class="{ 'required': {{ $required ? 'true' : 'false' }} }"
     ></div>
 
     @if($name)

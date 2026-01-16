@@ -52,11 +52,6 @@ class LiveLexxyEditor extends Component
         }
     }
 
-    public function updatedContent($value): void
-    {
-        $this->content = $value;
-    }
-
     public function liveLexxyContentChanged($content): void
     {
         $this->content = $content;

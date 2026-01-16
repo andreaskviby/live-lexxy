@@ -201,6 +201,6 @@
 }
 
 /* Required Field */
-.live-lexxy-editor.required {
+.live-lexxy-wrapper.required {
     border-color: #fc8181;
 }
