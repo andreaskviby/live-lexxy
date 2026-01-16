@@ -1,0 +1,48 @@
+{
+    "name": "andreaskviby/live-lexxy",
+    "description": "A modern rich text editor component for Laravel Livewire, built on Lexical editor framework",
+    "keywords": [
+        "laravel",
+        "livewire",
+        "editor",
+        "rich-text",
+        "lexical",
+        "wysiwyg"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andreas Kviby",
+            "email": "andreas@kviby.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1|^8.2|^8.3",
+        "illuminate/support": "^10.0|^11.0",
+        "livewire/livewire": "^3.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0|^9.0",
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Andreaskviby\\LiveLexxy\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Andreaskviby\\LiveLexxy\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Andreaskviby\\LiveLexxy\\LiveLexxyServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
