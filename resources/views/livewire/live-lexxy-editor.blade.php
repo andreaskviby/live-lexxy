@@ -6,10 +6,11 @@
         enableMarkdown: {{ $enableMarkdown ? 'true' : 'false' }},
         enableCodeHighlighting: {{ $enableCodeHighlighting ? 'true' : 'false' }},
         enableTables: {{ $enableTables ? 'true' : 'false' }},
+        enableImages: {{ $enableImages ? 'true' : 'false' }},
     })"
     x-init="init()"
     class="live-lexxy-wrapper"
-    :class="{ 'required': {{ $required ? 'true' : 'false' }} }"
+    :class="{ 'required': {{ $required ? 'true' : 'false' }}, 'uploading': isImageUploading }"
     wire:ignore
 >
     <div class="live-lexxy-toolbar">

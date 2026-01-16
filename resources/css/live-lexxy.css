@@ -204,3 +204,43 @@
 .live-lexxy-wrapper.required {
     border-color: #fc8181;
 }
+
+/* Image Styles */
+.live-lexxy-image-wrapper {
+    margin: 1em 0;
+    text-align: center;
+}
+
+.live-lexxy-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.live-lexxy-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Drag and Drop Indicator */
+.live-lexxy-editor.drag-over {
+    background: #edf2f7;
+    border: 2px dashed #4299e1;
+}
+
+/* Image upload loading state */
+.live-lexxy-wrapper.uploading::after {
+    content: 'Uploading image...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    pointer-events: none;
+}

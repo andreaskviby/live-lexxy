@@ -1,1 +1,246 @@
-/* Placeholder - Run npm run build to generate the actual CSS file */
+/* Live Lexxy Editor Styles */
+
+.live-lexxy-wrapper {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    background: white;
+    overflow: hidden;
+}
+
+.live-lexxy-toolbar {
+    display: flex;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    background: #f7fafc;
+    border-bottom: 1px solid #e2e8f0;
+    flex-wrap: wrap;
+}
+
+.live-lexxy-toolbar-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 0.5rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 0.25rem;
+    background: white;
+    color: #4a5568;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.live-lexxy-toolbar-button:hover {
+    background: #edf2f7;
+    border-color: #a0aec0;
+}
+
+.live-lexxy-toolbar-button.active {
+    background: #4299e1;
+    color: white;
+    border-color: #3182ce;
+}
+
+.live-lexxy-editor {
+    min-height: 200px;
+    max-height: 600px;
+    overflow-y: auto;
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #2d3748;
+    outline: none;
+}
+
+.live-lexxy-editor:empty::before {
+    content: attr(data-placeholder);
+    color: #a0aec0;
+    pointer-events: none;
+    position: absolute;
+}
+
+.live-lexxy-editor:focus {
+    outline: none;
+}
+
+/* Typography Styles */
+.live-lexxy-paragraph {
+    margin: 0 0 1em 0;
+}
+
+.live-lexxy-paragraph:last-child {
+    margin-bottom: 0;
+}
+
+.live-lexxy-text-bold {
+    font-weight: 700;
+}
+
+.live-lexxy-text-italic {
+    font-style: italic;
+}
+
+.live-lexxy-text-strikethrough {
+    text-decoration: line-through;
+}
+
+.live-lexxy-text-underline {
+    text-decoration: underline;
+}
+
+.live-lexxy-text-code {
+    background: #f7fafc;
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.875em;
+}
+
+.live-lexxy-link {
+    color: #4299e1;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.live-lexxy-link:hover {
+    color: #3182ce;
+}
+
+/* Headings */
+.live-lexxy-heading-h1 {
+    font-size: 2em;
+    font-weight: 700;
+    margin: 0.5em 0;
+    line-height: 1.2;
+}
+
+.live-lexxy-heading-h2 {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 0.5em 0;
+    line-height: 1.3;
+}
+
+.live-lexxy-heading-h3 {
+    font-size: 1.25em;
+    font-weight: 600;
+    margin: 0.5em 0;
+    line-height: 1.4;
+}
+
+/* Lists */
+.live-lexxy-list-ul,
+.live-lexxy-list-ol {
+    margin: 0.5em 0;
+    padding-left: 2em;
+}
+
+.live-lexxy-list-ul {
+    list-style-type: disc;
+}
+
+.live-lexxy-list-ol {
+    list-style-type: decimal;
+}
+
+.live-lexxy-list-item {
+    margin: 0.25em 0;
+}
+
+/* Quote */
+.live-lexxy-quote {
+    border-left: 4px solid #cbd5e0;
+    padding-left: 1em;
+    margin: 1em 0;
+    color: #718096;
+    font-style: italic;
+}
+
+/* Code Block */
+.live-lexxy-code-block {
+    background: #2d3748;
+    color: #e2e8f0;
+    padding: 1em;
+    border-radius: 0.5rem;
+    margin: 1em 0;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* Table */
+.live-lexxy-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
+    border: 1px solid #e2e8f0;
+}
+
+.live-lexxy-table-cell {
+    border: 1px solid #e2e8f0;
+    padding: 0.5em;
+    min-width: 75px;
+}
+
+.live-lexxy-table-cell:first-child {
+    font-weight: 600;
+    background: #f7fafc;
+}
+
+/* Focus and Selection */
+.live-lexxy-editor [contenteditable="true"]:focus {
+    outline: none;
+}
+
+.live-lexxy-editor ::selection {
+    background: #bee3f8;
+}
+
+/* Required Field */
+.live-lexxy-wrapper.required {
+    border-color: #fc8181;
+}
+
+/* Image Styles */
+.live-lexxy-image-wrapper {
+    margin: 1em 0;
+    text-align: center;
+}
+
+.live-lexxy-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.live-lexxy-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Drag and Drop Indicator */
+.live-lexxy-editor.drag-over {
+    background: #edf2f7;
+    border: 2px dashed #4299e1;
+}
+
+/* Image upload loading state */
+.live-lexxy-wrapper.uploading::after {
+    content: 'Uploading image...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    pointer-events: none;
+}

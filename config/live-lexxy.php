@@ -14,6 +14,7 @@ return [
         'italic',
         'strikethrough',
         'link',
+        'image',
         'bulletList',
         'orderedList',
         'quote',
@@ -52,6 +53,17 @@ return [
     |
     */
     'enable_tables' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Enable Images
+    |--------------------------------------------------------------------------
+    |
+    | Enable image support in the editor with upload, drag-and-drop,
+    | and paste functionality.
+    |
+    */
+    'enable_images' => true,
 
     /*
     |--------------------------------------------------------------------------
