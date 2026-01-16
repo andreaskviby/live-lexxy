@@ -316,7 +316,7 @@ window.liveLexxyEditor = function (config) {
 
                     const items = Array.from(clipboardData.items);
                     for (const item of items) {
-                        if (item.type.indexOf('image') === 0) {
+                        if (item.type.startsWith('image/')) {
                             event.preventDefault();
                             const file = item.getAsFile();
                             if (file) {
@@ -338,7 +338,7 @@ window.liveLexxyEditor = function (config) {
                     if (!files || files.length === 0) return false;
 
                     const imageFiles = Array.from(files).filter(file => 
-                        file.type.indexOf('image') === 0
+                        file.type.startsWith('image/')
                     );
 
                     if (imageFiles.length > 0) {
@@ -370,6 +370,14 @@ window.liveLexxyEditor = function (config) {
         async handleImageFile(file) {
             if (this.isImageUploading) return;
             
+            // Validate file size (max 10MB)
+            const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+            if (file.size > maxSize) {
+                console.error('Image file too large:', file.size);
+                this.showError('Image file is too large. Maximum size is 10MB.');
+                return;
+            }
+            
             this.isImageUploading = true;
 
             try {
@@ -390,9 +398,19 @@ window.liveLexxyEditor = function (config) {
                 });
             } catch (error) {
                 console.error('Error uploading image:', error);
-                alert('Failed to upload image. Please try again.');
+                this.showError(`Failed to upload image: ${error.message || 'Unknown error'}. Please try again.`);
             } finally {
                 this.isImageUploading = false;
+            }
+        },
+
+        showError(message) {
+            // Use a more user-friendly notification if available, otherwise fall back to alert
+            if (window.Livewire && window.Livewire.emit) {
+                window.Livewire.emit('showNotification', { type: 'error', message });
+            } else {
+                console.error(message);
+                alert(message);
             }
         },
 
@@ -413,7 +431,7 @@ window.liveLexxyEditor = function (config) {
             
             input.onchange = (e) => {
                 const file = e.target.files[0];
-                if (file && file.type.indexOf('image') === 0) {
+                if (file && file.type.startsWith('image/')) {
                     this.handleImageFile(file);
                 }
             };
