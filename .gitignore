@@ -7,5 +7,4 @@ yarn.lock
 .idea/
 .vscode/
 *.log
-/dist/
 /.phpunit.cache
